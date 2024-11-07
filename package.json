@@ -9,9 +9,9 @@
     "horizontal-timeline",
     "vertical-timeline"
   ],
-  "author": "Prabhu Murthy",
+  "author": "Atharv Kinage",
   "repository": {
-    "url": "https://github.com/prabhuignoto/react-chrono",
+    "url": "https://github.com/atharv-kinage/react-chrono.git",
     "type": "git"
   },
   "scripts": {
