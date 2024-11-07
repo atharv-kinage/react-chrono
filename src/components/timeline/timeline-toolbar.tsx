@@ -51,25 +51,25 @@ const TimelineToolbar: FunctionComponent<TimelineToolbarProps> = ({
         id: 'timeline-controls',
         label: 'Timeline Controls',
         name: 'timeline_control',
-        onSelect: () => {},
+        onSelect: () => { },
       },
       {
         id: 'timeline-popover',
         label: 'timeline_popover',
         name: 'popover',
-        onSelect: () => {},
+        onSelect: () => { },
       },
       {
         id: 'layout-popover',
         label: 'layout_popover',
         name: 'popover',
-        onSelect: () => {},
+        onSelect: () => { },
       },
       {
         id: 'change-density',
         label: 'change_density',
         name: 'changeDensity',
-        onSelect: () => {},
+        onSelect: () => { },
       },
     ];
   }, []);
@@ -92,9 +92,7 @@ const TimelineToolbar: FunctionComponent<TimelineToolbarProps> = ({
     return cardLess || slideShowRunning;
   }, [cardLess, slideShowRunning]);
 
-  const canShowDensity = useMemo(() => {
-    return items.every((item) => item.cardDetailedText);
-  }, []);
+  const canShowDensity = false;
 
   // Render the TimelineToolbar component
   return (
