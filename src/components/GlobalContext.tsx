@@ -125,7 +125,6 @@ const GlobalContextProvider: FunctionComponent<ContextProps> = (props) => {
           enableDarkToggle: false,
           enableLayoutSwitch: true,
           enableQuickJump: true,
-          enableChangeDensity: false
           focusActiveItemOnLoad: false,
           highlightCardsOnHover: false,
           lineWidth: 3,

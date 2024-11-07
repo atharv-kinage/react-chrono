@@ -145,8 +145,6 @@ export type TimelineProps = {
 
   enableQuickJump?: boolean;
 
-  enableChangeDensity?: boolean;
-
   // flips the layout, useful for RTL
   flipLayout?: boolean;
 
