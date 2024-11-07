@@ -37,6 +37,7 @@ const TimelineToolbar: FunctionComponent<TimelineToolbarProps> = ({
     theme,
     cardLess,
     enableQuickJump,
+    enableChangeDensity,
     darkMode,
     toolbarPosition,
     textDensity,
@@ -149,7 +150,7 @@ const TimelineToolbar: FunctionComponent<TimelineToolbarProps> = ({
             />
           ) : null}
         </ExtraControlChild>
-        {canShowDensity ? (
+        {enableChangeDensity ? (
           <ExtraControlChild key="change-density">
             <ChangeDensity
               isDarkMode={darkMode}
