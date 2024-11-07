@@ -97,7 +97,7 @@ const TimelineToolbar: FunctionComponent<TimelineToolbarProps> = ({
   // Render the TimelineToolbar component
   return (
     <Toolbar items={toolbarItems} theme={theme}>
-      <Controls
+      {/* <Controls
         disableLeft={disableLeft}
         disableRight={disableRight}
         id={id}
@@ -111,7 +111,7 @@ const TimelineToolbar: FunctionComponent<TimelineToolbarProps> = ({
         isDark={darkMode}
         onToggleDarkMode={toggleDarkMode}
         onPaused={onPaused}
-      />
+      /> */}
       <ExtraControls
         $hide={hideExtraControls}
         $slideShowRunning={slideShowRunning}
