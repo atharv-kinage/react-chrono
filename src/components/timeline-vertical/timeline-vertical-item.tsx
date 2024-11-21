@@ -180,8 +180,8 @@ const VerticalItem: React.FunctionComponent<VerticalItemModel> = (
   );
 
   const canShowTitle = useMemo(() => {
-    return !isNested && !isMobile;
-  }, [isNested, isMobile]);
+    return !isNested;
+  }, [isNested]);
 
   return (
     <VerticalItemWrapper
