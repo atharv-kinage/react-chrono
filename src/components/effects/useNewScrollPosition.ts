@@ -51,29 +51,38 @@ const useNewScrollPosition = (
         }
       } else if (mode === 'VERTICAL' || mode === 'VERTICAL_ALTERNATING') {
         // Handling vertical modes
-        if (contentOffset && contentHeight) {
-          // Calculating bottom boundaries for container and circular element
-          const contrBottom = scrollTop + clientHeight;
-          const circBottom = contentOffset + contentHeight;
+        if (contentOffset !== undefined && contentHeight) {
+          const containerBottom = scrollTop + clientHeight;
+          const elementBottom = contentOffset + contentHeight;
 
-          // Checking if the element is fully visible
-          const isVisible =
-            contentOffset >= scrollTop && circBottom <= contrBottom;
+          const isFullyVisible = contentOffset >= scrollTop && elementBottom <= containerBottom;
+          const isPartiallyVisible = (contentOffset < scrollTop && elementBottom > scrollTop) ||
+            (elementBottom > containerBottom && contentOffset < containerBottom);
 
-          // Checking if the element is partially visible
-          const isPartiallyVisible =
-            (contentOffset < scrollTop && circBottom > scrollTop) ||
-            (circBottom > contrBottom && contentOffset < contrBottom);
+          if (!isFullyVisible) {
+            let idealScroll = scrollTop;
 
-          // Calculating new offset
-          const nOffset = contentOffset - contentHeight;
-          const notVisible = !isVisible || isPartiallyVisible;
+            if (contentOffset < scrollTop) {
+              // Element is above; align its start with the container's top
+              idealScroll = contentOffset;
+            } else if (elementBottom > containerBottom) {
+              // Element is below; align its end with the container's bottom
+              idealScroll = elementBottom - clientHeight;
+            }
 
-          // Setting offset based on visibility conditions
-          if (notVisible && nOffset + contentHeight < contrBottom) {
-            setNewOffset(nOffset + Math.round(contentHeight / 2));
-          } else if (notVisible) {
-            setNewOffset(nOffset);
+            // Center the element if it's significantly out of view
+            const containerCenter = scrollTop + clientHeight / 2;
+            const elementCenter = contentOffset + contentHeight / 2;
+            const isFarFromCenter = Math.abs(elementCenter - containerCenter) > clientHeight / 4;
+
+            if (isFarFromCenter) {
+              idealScroll = elementCenter - clientHeight / 2;
+            }
+            // Clamp the scroll position to valid bounds
+            const maxScroll = parent.scrollHeight - clientHeight;
+            idealScroll = Math.max(0, Math.min(idealScroll, maxScroll));
+
+            setNewOffset(idealScroll);
           }
         }
       }
