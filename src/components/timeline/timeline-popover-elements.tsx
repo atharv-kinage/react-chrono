@@ -122,6 +122,7 @@ const QuickJump: FunctionComponent<QuickJumpProp> = ({
       $isMobile={isMobile}
       icon={<ArrowDownIcon />}
     >
+        {({ closePopover }) => (
       <List
         items={items.map((item, index) => ({
           active: index === activeItem,
@@ -132,8 +133,12 @@ const QuickJump: FunctionComponent<QuickJumpProp> = ({
           title: item.title || `Item ${index + 1}`,
         }))}
         theme={theme}
-        onClick={onActivateItem}
+        onClick={(item) => {
+          onActivateItem(item); 
+          closePopover(); 
+        }}
       />
+        )}
     </PopOver>
   );
 };

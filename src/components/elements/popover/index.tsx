@@ -88,7 +88,8 @@ const PopOver: FunctionComponent<PopOverModel> = ({
               <CloseIcon />
             </CloseButton>
           </Header>
-          <Content>{children}</Content>
+          <Content>  {typeof children === 'function' ? children({ closePopover }) : children}
+          </Content>
         </PopoverHolder>
       ) : null}
     </PopoverWrapper>
